@@ -48,7 +48,7 @@ Sebelum memulai instalasi, pastikan sistem Anda sudah terinstal:
    ```
 
 6. **Buat Database Baru**:
-   Buat database kosong bernama `inventory_telkom` (atau sesuai konfigurasi `.env` Anda) melalui **phpMyAdmin** (`http://localhost/phpmyadmin`).
+   Buat database kosong bernama `sim_inventaris` (atau sesuai konfigurasi `.env` Anda) melalui **phpMyAdmin** (`http://localhost/phpmyadmin`).
 
 7. **Jalankan Migrasi & Seeder Database**:
    Jalankan perintah berikut untuk membuat tabel dan mengisi data awal (seperti roles, kategori, dan akun uji coba):

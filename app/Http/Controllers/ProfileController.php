@@ -27,7 +27,14 @@ class ProfileController extends Controller
             if ($user->profile_photo) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo);
             }
-            $validated['profile_photo'] = $request->file('profile_photo')->store('profiles', 'public');
+            $upload = Cloudinary::upload(
+                $request->file('profile_photo')->getRealPath(),
+                [
+                    'folder' => 'profiles'
+                ]
+            );
+
+            $validated['profile_photo'] = $upload->getSecurePath();
         }
 
         $user->update($validated);

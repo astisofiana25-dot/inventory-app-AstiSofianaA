@@ -3,22 +3,22 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL; // <-- tambahkan ini
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
+        // Tambahkan ini
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         try {
             // Register middleware alias 'role' to ensure routes using ->middleware('role:...') work
             $router = $this->app->make(\Illuminate\Routing\Router::class);
@@ -40,8 +40,7 @@ class AppServiceProvider extends ServiceProvider
                 }
             }
         } catch (\Exception $e) {
-            // Biarkan kosong agar ketika Railway melakukan build/cache tanpa database,
-            // prosesnya tidak akan memicu error dan build bisa sukses berjalan.
+            //
         }
     }
 }

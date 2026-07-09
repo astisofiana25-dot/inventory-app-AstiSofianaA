@@ -1,0 +1,217 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+    :where(input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"], input[type="url"], input[type="number"], input[type="date"], textarea, select) {
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem !important;
+        box-sizing: border-box;
+        line-height: 1.5;
+    }
+
+    :where(input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"], input[type="url"], input[type="number"], input[type="date"], textarea, select):focus {
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem !important;
+    }
+}
+
+/* Dark mode component overrides when <html> has class "dark" */
+html.dark {
+    --dark-bg: #0b1220;
+    --dark-panel: #0f1724;
+    --dark-muted: #94a3b8;
+    --dark-text: #e6eef8;
+    --dark-border: rgba(255,255,255,0.06);
+    --brand-500: #ef4444; /* match light-mode brand red */
+}
+
+html.dark body {
+    background-color: var(--dark-bg) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Common backgrounds and panels */
+html.dark .bg-white,
+html.dark .bg-white\/85,
+html.dark .bg-white\/10,
+html.dark .bg-white\/15,
+html.dark .bg-white\/20,
+html.dark .bg-brand-50 {
+    background-color: var(--dark-panel) !important;
+    color: var(--dark-text) !important;
+}
+
+html.dark .bg-gray-50 { background-color: var(--dark-bg) !important; }
+html.dark .bg-gray-100 { background-color: rgba(255,255,255,0.03) !important; }
+
+/* Text colors */
+html.dark .text-gray-900,
+html.dark .text-gray-800,
+html.dark .text-brand-700 {
+    color: var(--dark-text) !important;
+}
+html.dark .text-gray-400 { color: var(--dark-muted) !important; }
+html.dark .text-brand-200 { color: var(--dark-muted) !important; }
+
+/* Borders */
+html.dark .border-gray-200\/80,
+html.dark .border-white\/10,
+html.dark .border-brand-100 {
+    border-color: var(--dark-border) !important;
+}
+
+/* Sidebar tweaks (keep brand gradient but increase red vibrancy in dark mode) */
+/* Bright, vivid red gradient for dark sidebar */
+html.dark aside {
+    background-image: linear-gradient(180deg,#ff4d4f 0%, #ef4444 50%, #b91c1c 100%) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 6px 18px rgba(239,68,68,0.08);
+}
+
+/* Nav links, active states */
+html.dark .nav-link,
+html.dark .nav-active,
+html.dark .hover\:bg-white\/10:hover {
+    background-color: rgba(255,255,255,0.02) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Inputs, selects, textareas */
+html.dark input,
+html.dark textarea,
+html.dark select {
+    background-color: rgba(255,255,255,0.02) !important;
+    color: var(--dark-text) !important;
+    border: 1px solid rgba(255,255,255,0.04) !important;
+}
+
+/* Tables and cards */
+html.dark table,
+html.dark .card,
+html.dark .rounded-lg {
+    background-color: transparent;
+    color: var(--dark-text) !important;
+}
+
+/* Table-specific dark styles */
+html.dark table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent !important;
+    color: var(--dark-text) !important;
+}
+html.dark table th,
+html.dark table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+}
+html.dark table thead th {
+    background-color: rgba(255,255,255,0.03) !important;
+    color: var(--dark-text) !important;
+    font-weight: 600;
+}
+html.dark table tbody tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.015) !important;
+}
+html.dark table tbody tr:hover {
+    background-color: rgba(255,255,255,0.03) !important;
+}
+/* If project uses .table class */
+html.dark .table {
+    background-color: transparent !important;
+}
+html.dark .table thead th { background-color: rgba(255,255,255,0.03) !important; }
+html.dark .table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+/* Aggressive overrides for any leftover white backgrounds (tables, cards, wrappers) */
+html.dark [class*="bg-white"] {
+    background-color: var(--dark-panel) !important;
+    color: var(--dark-text) !important;
+}
+html.dark .bg-white { background-color: var(--dark-panel) !important; }
+html.dark .bg-white\/+\d+ { background-color: var(--dark-panel) !important; }
+
+/* DataTables and common wrapper selectors */
+html.dark .dataTables_wrapper,
+html.dark .dt-table,
+html.dark .table-responsive,
+html.dark .card,
+html.dark .panel,
+html.dark .panel-body,
+html.dark .panel-header {
+    background-color: transparent !important;
+    color: var(--dark-text) !important;
+    border-color: var(--dark-border) !important;
+}
+
+/* Ensure table cells don't keep white backgrounds */
+html.dark table th,
+html.dark table td,
+html.dark .table th,
+html.dark .table td {
+    background-color: transparent !important;
+}
+
+/* Force dropdowns / overlays to dark style */
+html.dark .dropdown-menu,
+html.dark .popover,
+html.dark .modal-content {
+    background-color: var(--dark-panel) !important;
+    color: var(--dark-text) !important;
+    border-color: var(--dark-border) !important;
+}
+
+/* Alerts and badges */
+html.dark .bg-brand-50 { background-color: rgba(15,23,42,0.6) !important; }
+html.dark .text-brand-50 { color: var(--dark-muted) !important; }
+
+/* Dropdowns and modals */
+html.dark .shadow-lg,
+html.dark .shadow-sm { box-shadow: 0 6px 18px rgba(2,6,23,0.6) !important; }
+
+/* Small utilities */
+html.dark .hidden-dark { display: none !important; }
+
+/* Ensure icon colors remain visible */
+html.dark svg { color: inherit; }
+
+/* Theme icon transition helpers */
+.theme-icon { transition: transform .18s ease, opacity .18s ease; }
+.theme-toggle-anim { transform: scale(1.08); }
+
+/* Sidebar nav button polish for dark mode */
+html.dark aside .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.75rem !important;
+    background-color: rgba(0,0,0,0.55) !important;
+    color: var(--dark-text) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 6px 18px rgba(2,6,23,0.25);
+}
+html.dark aside .nav-link svg { color: var(--dark-text) !important; opacity: 0.95; }
+html.dark aside .nav-link:hover { background-color: rgba(255,255,255,0.04) !important; transform: translateY(-1px); }
+html.dark aside .nav-link.nav-active {
+    background-color: rgba(255,255,255,0.08) !important;
+    box-shadow: 0 8px 24px rgba(2,6,23,0.32) !important;
+    color: var(--dark-text) !important;
+}
+html.dark aside .nav-link.nav-active::before {
+    background: linear-gradient(180deg,var(--brand-500),#b91c1c) !important;
+}
+html.dark .sidebar-text { color: var(--dark-text) !important; }
+
+/* Smaller icon + text sizes for compact sidebar */
+html.dark aside .nav-link .w-5 { width: 1.25rem; height: 1.25rem; }
+
+

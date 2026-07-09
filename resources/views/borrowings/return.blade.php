@@ -17,7 +17,7 @@
                 <div class="flex flex-col sm:flex-row gap-4">
                     <div class="flex-shrink-0 w-full sm:w-56">
                         @if(!empty($detail->product->image))
-                            <img src="{{ asset('storage/'.$detail->product->image) }}" alt="{{ $detail->product->nama_barang }}" class="w-full h-64 object-cover rounded-lg shadow-sm bg-gray-100" />
+                            <img src="{{ $detail->product->image }}" alt="{{ $detail->product->nama_barang }}" class="w-full h-64 object-cover rounded-lg shadow-sm bg-gray-100" />
                         @else
                             <div class="w-full h-64 rounded-lg bg-gray-100 flex items-center justify-center shadow-sm">
                                 <span class="text-6xl font-extrabold text-gray-500">{{ strtoupper(substr($detail->product->nama_barang,0,1)) }}</span>

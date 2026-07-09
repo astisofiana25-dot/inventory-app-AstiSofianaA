@@ -85,8 +85,8 @@ Berikut adalah akun yang telah disediakan secara otomatis dari proses seeder unt
 | Nama | Email / Username | Role | Password |
 |---|---|---|---|
 | **Admin** | `admintelkomreg3@gmail.com` | Admin | `passadmin123` |
-| **Staff ** | `astisofas123@gmail.com` | Staff | `12345678` |
-| **Manager Kantor** | `astisofiana25@gmail.com` | Manager | `12345678` |
+| **Staff** | `astisofas123@gmail.com` | Staff | `12345678` |
+| **Manager** | `astisofiana25@gmail.com` | Manager | `12345678` |
 
 ---
 

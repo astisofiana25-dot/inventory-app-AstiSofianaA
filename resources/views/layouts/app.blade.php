@@ -337,34 +337,49 @@
         </div>
         <nav class="px-3 py-4 space-y-1 text-sm overflow-y-auto flex-1">
             @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager') || auth()->user()->hasRole('staff'))
-            <a href="{{ route('dashboard') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('dashboard') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" :title="sidebarCollapsed ? 'Dashboard' : ''">
+            <a href="{{ route('dashboard') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('dashboard') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" title="Dashboard">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                 <span class="sidebar-text whitespace-nowrap">Dashboard</span>
             </a>
             @if (auth()->user()->hasRole('admin'))
-            <a href="{{ route('users.index') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('users.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" :title="sidebarCollapsed ? 'Pengguna' : ''">
+            <a href="{{ route('users.index') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('users.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" title="Pengguna">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1M15 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                 <span class="sidebar-text whitespace-nowrap">Pengguna</span>
             </a>
             @endif
             @endif
             @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('staff') || auth()->user()->hasRole('manager'))
-            <a href="{{ route('products.index') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('products.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" :title="sidebarCollapsed ? 'Data Barang' : ''">
+            <a href="{{ route('products.index') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('products.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" title="Data Barang">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
                 <span class="sidebar-text whitespace-nowrap">Data Barang</span>
             </a>
             @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager'))
-            <a href="{{ route('categories.index') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('categories.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" :title="sidebarCollapsed ? 'Kategori' : ''">
+            <a href="{{ route('categories.index') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('categories.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" title="Kategori">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
                 <span class="sidebar-text whitespace-nowrap">Kategori</span>
             </a>
             @endif
-            <a href="{{ route('borrowings.index') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('borrowings.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" :title="sidebarCollapsed ? (auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager') ? 'Peminjaman Staff' : 'Peminjaman') : ''">
-                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                <span class="sidebar-text whitespace-nowrap">{{ auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager') ? 'Peminjaman Staff' : 'Peminjaman' }}</span>
+            <a href="{{ route('borrowings.index') }}"
+            class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('borrowings.*') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}"
+            title="{{ auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager') ? 'Peminjaman Staff' : 'Peminjaman' }}">
+
+                <svg class="w-5 h-5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                    </path>
+                </svg>
+
+                <span class="sidebar-text whitespace-nowrap">
+                    {{ auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager') ? 'Peminjaman Staff' : 'Peminjaman' }}
+                </span>
             </a>
             @if (auth()->user()->hasRole('staff'))
-            <a href="{{ route('staff.riwayat') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('staff.riwayat') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" :title="sidebarCollapsed ? 'Riwayat Staff' : ''">
+            <a href="{{ route('staff.riwayat') }}" class="nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition {{ request()->routeIs('staff.riwayat') ? 'nav-active bg-white/15 font-semibold shadow-inner' : 'hover:bg-white/10 text-brand-50/90' }}" title="Riwayat Staff">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <span class="sidebar-text whitespace-nowrap">Riwayat Staff</span>
             </a>

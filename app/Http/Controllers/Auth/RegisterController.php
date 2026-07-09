@@ -86,8 +86,6 @@ class RegisterController extends Controller
             ]);
         });
 
-        Auth::login($user);
-
-        return redirect()->route('dashboard');
+        return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silakan masuk dengan email dan password Anda.');
     }
 }

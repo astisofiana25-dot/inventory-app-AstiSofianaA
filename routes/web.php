@@ -37,6 +37,9 @@ Route::post('/logout', [LoginController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
+Route::get('/logout/splash', [LoginController::class, 'logoutSplash'])
+    ->name('logout.splash');
+
 // Load debug routes (development only)
 if (file_exists(__DIR__.'/debug.php')) {
     require __DIR__.'/debug.php';

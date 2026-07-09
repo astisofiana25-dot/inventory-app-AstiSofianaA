@@ -47,7 +47,7 @@
         @if(auth()->user()->hasRole('admin'))
         <div class="bg-red-600 rounded-2xl border border-red-700 shadow-sm card-lift p-5 text-white h-full flex flex-col justify-between">
             <div class="flex items-center justify-between mb-3">
-                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">Total Pelanggan</span>
+                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">Total Pengguna</span>
                 <span class="w-10 h-10 rounded-2xl bg-white/10 text-white flex items-center justify-center text-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-4-4h-1" />

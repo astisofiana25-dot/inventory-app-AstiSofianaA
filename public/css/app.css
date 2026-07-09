@@ -25,8 +25,8 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
         radial-gradient(circle at 88% 88%, rgba(0,0,0,0.30) 0%, transparent 55%),
         linear-gradient(135deg, #f87171 0%, #dc2626 32%, #991b1b 68%, #450a0a 100%);
     overflow: hidden;
-    animation: splashFadeOut .7s ease forwards;
-    animation-delay: 2s;
+    animation: splashFadeOut .9s ease forwards;
+    animation-delay: 3s;
 }
 html.no-splash .app-splash,
 html.no-splash .app-splash-lock { display: none !important; }

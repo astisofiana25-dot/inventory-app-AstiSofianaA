@@ -44,7 +44,7 @@
     <table class="w-full text-sm">
         <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
             <tr>
-                <th class="text-left px-5 py-3">Staff</th>
+                <th class="text-left px-5 py-3">Peminjam</th>
                 <th class="text-left px-5 py-3">Email</th>
                 <th class="text-left px-5 py-3">Barang</th>
                 <th class="text-left px-5 py-3">Jumlah</th>
@@ -57,7 +57,7 @@
         <tbody class="divide-y divide-gray-100">
             @forelse ($borrowings as $b)
                 <tr class="hover:bg-gray-50/70">
-                    <td class="px-5 py-3 font-medium text-gray-800">{{ $b->processedBy?->name ?? $b->nama_peminjam }}</td>
+                    <td class="px-5 py-3 font-medium text-gray-800">{{ $b->nama_peminjam }}</td>
                     <td class="px-5 py-3 text-gray-500">{{ $b->processedBy?->email ?? '-' }}</td>
                     <td class="px-5 py-3 text-gray-500">
                         @foreach ($b->details as $d)

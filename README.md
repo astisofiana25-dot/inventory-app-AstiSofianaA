@@ -1,59 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Inventory App Telkom
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi manajemen inventaris berbasis web yang dibangun menggunakan framework Laravel dan Vite.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Prasyarat Sistem
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Sebelum memulai instalasi, pastikan sistem Anda sudah terinstal:
+- **PHP** (minimal versi 8.1 atau 8.2)
+- **Composer** (untuk manajemen dependensi PHP)
+- **MySQL / MariaDB** (melalui XAMPP)
+- **Node.js & NPM** (untuk kompilasi asset frontend/Vite)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Langkah Instalasi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+1. **Buka folder proyek** Anda menggunakan Terminal/Command Prompt/PowerShell.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Salin file konfigurasi lingkungan (.env)**:
+   ```bash
+   cp .env.example .env
+   ```
+   *Di Windows PowerShell/CMD, jika perintah di atas tidak berfungsi:*
+   ```powershell
+   copy .env.example .env
+   ```
 
-## Laravel Sponsors
+3. **Sesuaikan konfigurasi database** di file `.env` yang baru dibuat:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=inventory_telkom  
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. **Instal Dependensi PHP (Composer)**:
+   ```bash
+   composer install
+   ```
 
-### Premium Partners
+5. **Generate Application Key**:
+   ```bash
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+6. **Buat Database Baru**:
+   Buat database kosong bernama `inventory_telkom` (atau sesuai konfigurasi `.env` Anda) melalui **phpMyAdmin** (`http://localhost/phpmyadmin`).
 
-## Contributing
+7. **Jalankan Migrasi & Seeder Database**:
+   Jalankan perintah berikut untuk membuat tabel dan mengisi data awal (seperti roles, kategori, dan akun uji coba):
+   ```bash
+   php artisan migrate --seed
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+8. **Instal & Jalankan Asset Frontend (Vite)**:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Cara Menjalankan Project
 
-## Security Vulnerabilities
+1. Pastikan **Apache** dan **MySQL** di panel kontrol **XAMPP** sudah menyala (Start).
+2. Jalankan server lokal Laravel dengan perintah:
+   ```bash
+   php artisan serve
+   ```
+3. Buka browser dan akses aplikasi melalui URL:
+   [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## Akun Login untuk Testing
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Berikut adalah akun yang telah disediakan secara otomatis dari proses seeder untuk uji coba aplikasi:
+
+### 1. Akun Demo (`UserSeeder`)
+
+| Nama | Email / Username | Role | Password |
+|---|---|---|---|
+| **Admin** | `admintelkomreg3@gmail.com` | Admin | `passadmin123` |
+| **Staff ** | `astisofas123@gmail.com` | Staff | `12345678` |
+| **Manager Kantor** | `astisofiana25@gmail.com` | Manager | `12345678` |
+
+---
+
+## Cara Register Akun Baru
+
+Jika Anda ingin mencoba alur pendaftaran user baru, ikuti langkah berikut:
+
+1. Buka halaman register melalui link **Daftar** di halaman login.
+2. Isi data berikut:
+   - **Nama Lengkap**: isi nama Anda.
+   - **Email**: gunakan email Gmail yang belum terdaftar.
+   - **ID Karyawan**: masukkan salah satu ID karyawan yang tersedia dan belum dipakai.
+   - **Password**: buat password yang aman.
+   - **Konfirmasi Password**: ulangi password.
+3. Klik tombol **Daftar**.
+4. Setelah berhasil, sistem akan otomatis login ke akun Anda dan mengarahkan ke dashboard.
+
+### ID Karyawan yang Bisa Dicoba
+
+Berikut contoh ID karyawan yang tersedia di sistem dan masih bisa dipakai untuk testing register pada kondisi awal (belum ada akun user yang memakai ID tersebut):
+
+| Role | ID Karyawan yang Bisa Dicoba |
+|---|---|
+| **Staff** | `EMP007`, `EMP009`, `EMP010`, `EMP011`, `EMP012`, `EMP013` |
+
+| **Manager** | `EMP006`, `EMP008`, `EMP014`, `EMP015`, `EMP016`, `EMP017`, `EMP018` |
+
+> Tip: setelah salah satu ID dipakai untuk register, ID tersebut tidak bisa dipakai lagi oleh user lain karena sistem akan menolak ID yang sudah terdaftar.
+
+
+

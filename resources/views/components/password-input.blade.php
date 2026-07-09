@@ -7,8 +7,9 @@
            {{ $attributes->merge(['class' => 'w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-brand-500 focus:ring-2 focus:ring-brand-500 focus:outline-none shadow-sm pr-12 text-base']) }}
            data-password-input onfocus="this.removeAttribute('readonly');" onkeydown="this.removeAttribute('readonly');">
     <button type="button" 
-            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none cursor-pointer z-10"
             data-password-toggle
+            aria-label="Tampilkan atau sembunyikan password"
             tabindex="-1">
         <svg class="w-5 h-5 hidden" data-eye-open viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -23,8 +24,12 @@
 @once
     @push('scripts')
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            function initPasswordToggles() {
                 document.querySelectorAll('[data-password-toggle]').forEach(function (toggle) {
+                    if (toggle.dataset.initialized === 'true') {
+                        return;
+                    }
+
                     var input = toggle.closest('div').querySelector('[data-password-input]');
                     var eyeOpen = toggle.querySelector('[data-eye-open]');
                     var eyeClosed = toggle.querySelector('[data-eye-closed]');
@@ -32,6 +37,8 @@
                     if (!input) {
                         return;
                     }
+
+                    toggle.dataset.initialized = 'true';
 
                     toggle.addEventListener('click', function () {
                         var showing = input.type === 'text';
@@ -44,7 +51,13 @@
                         }
                     });
                 });
-            });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initPasswordToggles);
+            } else {
+                initPasswordToggles();
+            }
         </script>
     @endpush
 @endonce

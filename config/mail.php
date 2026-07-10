@@ -40,12 +40,12 @@ return [
         'smtp' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-            'scheme' => env('MAIL_SCHEME', 'smtp'),
+           'scheme' => null,
             'port' => env('MAIL_PORT', 587),
             'username' => env('MAIL_USERNAME', 'your-email@gmail.com'),
             'password' => env('MAIL_PASSWORD', 'your-app-password'),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'timeout' => null,
+            'timeout' => 10,
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 

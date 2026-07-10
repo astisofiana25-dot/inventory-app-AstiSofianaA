@@ -13,10 +13,18 @@
                 <label id="profilePhotoLabel" for="profile_photo" class="relative cursor-pointer rounded-full p-0.5 bg-white/70 transition">
                     <div id="profilePhotoPreview" class="w-28 h-28 rounded-full bg-gray-200 overflow-hidden border border-gray-200 flex items-center justify-center">
                         @if($user->profile_photo)
-                            <img id="profilePhotoPreviewImage" src="{{ asset('storage/' . $user->profile_photo) }}" alt="Foto Profil" class="w-full h-full object-cover" />
-                        @else
-                            <span id="profilePhotoInitial" class="text-2xl font-semibold text-gray-500">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
-                        @endif
+                        <img
+                            id="profilePhotoPreviewImage"
+                            src="{{ $user->profile_photo }}"
+                            alt="Foto Profil"
+                            class="w-full h-full object-cover"
+                            />
+                            @else
+                                <span id="profilePhotoInitial"
+                                    class="text-2xl font-semibold text-gray-500">
+                                    {{ strtoupper(substr($user->name,0,1)) }}
+                                </span>
+                            @endif
                     </div>
                     <input id="profile_photo" type="file" name="profile_photo" accept="image/*" class="hidden" />
                 </label>

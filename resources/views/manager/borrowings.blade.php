@@ -3,17 +3,15 @@
 @section('content')
 <div class="bg-white rounded-lg shadow p-6">
     <!-- Title shown in topbar; removed duplicate heading here -->
-    <form method="GET" class="flex items-center gap-3 mb-4">
-        <div>
-            <select name="status" aria-label="Status filter" style="min-width:12rem;padding:0.28rem 0.6rem;font-size:0.9rem;color:#111;background:#fff;border:1px solid #e5e7eb;border-radius:0.375rem;">
+    <form method="GET" class="flex flex-col md:flex-row md:items-center gap-3 mb-4">
+        <div class="w-full md:w-auto">
+            <select name="status" aria-label="Status filter" class="w-full md:w-48 border border-gray-300 rounded-md px-2.5 py-2 text-sm text-gray-900 bg-white focus:border-brand-500 focus:ring-brand-500 shadow-sm">
                 <option value="" {{ empty($status) ? 'selected' : '' }}>Semua</option>
                 <option value="dipinjam" {{ ($status ?? '') === 'dipinjam' ? 'selected' : '' }}>Dipinjam</option>
                 <option value="dikembalikan" {{ ($status ?? '') === 'dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
             </select>
         </div>
-        <div class="flex items-end">
-            <button type="submit" class="bg-brand-600 text-white rounded-md text-sm" style="min-height:2rem; padding:0.38rem 0.9rem; line-height:1.25;">Terapkan</button>
-        </div>
+        <button type="submit" class="w-full md:w-auto bg-brand-600 hover:bg-brand-700 text-white rounded-md px-3.5 py-2 text-sm font-semibold">Terapkan</button>
     </form>
     <div class="overflow-x-auto">
         <table class="w-full text-sm">

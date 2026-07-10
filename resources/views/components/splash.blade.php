@@ -89,6 +89,34 @@
         border-radius:50%;
         animation:splash-spinner 1s linear infinite;
     }
+
+    @media (max-width: 768px) {
+        .app-splash__logo-img{
+            max-width:35% !important;
+        }
+
+        .app-splash__loader{
+            margin-top:2rem;
+            width:50px;
+            height:50px;
+            border:4px solid rgba(255,255,255,.2);
+            border-top:4px solid white;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .app-splash__logo-img{
+            max-width:40% !important;
+        }
+
+        .app-splash__loader{
+            margin-top:1.5rem;
+            width:60px;
+            height:60px;
+            border:5px solid rgba(255,255,255,.2);
+            border-top:5px solid white;
+        }
+    }
 </style>
 
 <div class="app-splash" id="appSplash">
@@ -99,7 +127,7 @@
     <div style="display:flex;flex-direction:column;align-items:center;position:relative;z-index:10;">
         <img src="{{ asset('images/telkomsel-logo.png') }}"
              class="app-splash__logo-img"
-             style="max-width:20%;height:auto;">
+             style="max-width:20%;height:auto;min-width:80px;">
 
         <div class="app-splash__loader"></div>
     </div>

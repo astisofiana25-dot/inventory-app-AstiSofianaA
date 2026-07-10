@@ -2,7 +2,7 @@
 @section('title', 'Kategori: ' . $category->name)
 @section('content')
 
-<div class="bg-white rounded-2xl border border-gray-100 shadow-sm card-lift overflow-hidden">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm card-lift overflow-x-auto">
     <table class="w-full text-sm">
         <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
             <tr>

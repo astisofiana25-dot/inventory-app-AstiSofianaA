@@ -2,35 +2,35 @@
 @section('title', 'Peminjaman Barang')
 @section('content')
 
-<div class="flex items-center mb-6 flex-nowrap overflow-x-auto pb-1">
-    <form method="GET" class="flex gap-2 items-center flex-auto">
+<div class="flex flex-col lg:flex-row lg:items-center mb-6 gap-4 lg:gap-2">
+    <form method="GET" class="flex flex-col lg:flex-row gap-2 lg:items-center flex-auto lg:flex-wrap">
         <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari nama..."
-               class="w-40 border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm px-3 py-1.5">
+               class="w-full lg:flex-1 lg:min-w-40 border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm px-3 py-1.5">
         <select name="status" class="border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm px-2 py-1.5">
             <option value="">Status</option>
             <option value="dipinjam" @selected(request('status')=='dipinjam')>Dipinjam</option>
             <option value="dikembalikan" @selected(request('status')=='dikembalikan')>Dikembalikan</option>
         </select>
-        <input type="date" name="from" value="{{ request('from') }}" class="border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm px-2 py-1.5 w-32">
-        <input type="date" name="to" value="{{ request('to') }}" class="border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm px-2 py-1.5 w-32">
+        <input type="date" name="from" value="{{ request('from') }}" class="border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm px-2 py-1.5 w-full lg:w-32">
+        <input type="date" name="to" value="{{ request('to') }}" class="border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm px-2 py-1.5 w-full lg:w-32">
         <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 h-10 rounded-lg text-sm font-medium whitespace-nowrap">Cari</button>
     </form>
 
-    <div class="flex gap-2 items-center ml-6">
+    <div class="flex flex-row gap-2 lg:items-center justify-end">
         @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager'))
-        <a href="{{ route('reports.borrowings.export.xlsx', request()->only(['q','status','from','to','product_id'])) }}" class="text-sm bg-green-100 hover:bg-green-200 text-green-900 px-2.5 py-1.5 rounded-lg font-medium whitespace-nowrap">XLSX</a>
-        <a href="{{ route('reports.borrowings.export.pdf', request()->only(['q','status','from','to','product_id'])) }}" class="text-sm bg-red-100 hover:bg-red-200 text-red-700 px-2.5 py-1.5 rounded-lg font-medium whitespace-nowrap">PDF</a>
+        <a href="{{ route('reports.borrowings.export.xlsx', request()->only(['q','status','from','to','product_id'])) }}" class="text-sm bg-green-100 hover:bg-green-200 text-green-900 px-3 py-2 rounded-xl font-medium">XLSX</a>
+        <a href="{{ route('reports.borrowings.export.pdf', request()->only(['q','status','from','to','product_id'])) }}" class="text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-2 rounded-xl font-medium">PDF</a>
         @endif
 
         @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('staff'))
-        <a href="{{ route('borrowings.create') }}" class="bg-brand-600 hover:bg-brand-700 text-white px-3 py-1.5 rounded-lg text-sm font-semibold shadow-lg shadow-brand-600/25 whitespace-nowrap ml-auto">
+        <a href="{{ route('borrowings.create') }}" class="bg-brand-600 hover:bg-brand-700 text-white px-3 py-1.5 rounded-lg text-sm font-semibold shadow-lg shadow-brand-600/25 whitespace-nowrap">
             + Catat
         </a>
         @endif
     </div>
 </div>
 
-<div class="bg-white rounded-2xl border border-gray-100 shadow-sm card-lift overflow-hidden">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm card-lift overflow-x-auto">
     <table class="w-full text-sm">
         <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
             <tr>

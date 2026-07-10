@@ -40,6 +40,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive-fix.css') }}">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
     @stack('scripts')
@@ -74,6 +75,13 @@
         nav {
             scrollbar-width: none;
             -ms-overflow-style: none;
+            overflow: hidden;
+            flex: 1;
+        }
+        @media (max-width: 1024px) {
+            nav {
+                overflow-y: auto;
+            }
         }
         nav::-webkit-scrollbar {
             width: 0;
@@ -314,11 +322,50 @@
         html.sidebar-expanded .content-wrapper {
             margin-left: 14rem !important;
         }
+        /* Mobile responsive fix */
+        @media (max-width: 1024px) {
+            html.sidebar-collapsed .content-wrapper,
+            html.sidebar-expanded .content-wrapper {
+                margin-left: 0 !important;
+            }
+            aside {
+                position: fixed !important;
+                z-index: 40 !important;
+                top: 0 !important;
+                left: 0 !important;
+                height: 100vh !important;
+                width: 14rem !important;
+                min-width: 14rem !important;
+                max-width: 14rem !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+            }
+        }
+        @media (min-width: 1024px) {
+            html.sidebar-collapsed aside,
+            html.sidebar-collapsed .sidebar-loading,
+            html.sidebar-collapsed .sidebar-ready {
+                width: 5rem !important;
+                min-width: 5rem !important;
+                max-width: 5rem !important;
+            }
+            html.sidebar-expanded aside,
+            html.sidebar-expanded .sidebar-loading,
+            html.sidebar-expanded .sidebar-ready {
+                width: 14rem !important;
+            }
+            aside {
+                overflow: hidden !important;
+                height: 100vh !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased alpine-loading">
 <x-splash />
-<div class="flex min-h-screen">
+<div class="flex min-h-screen flex-col lg:flex-row">
+        <!-- Mobile backdrop -->
+        <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-20 bg-black/30 lg:hidden" x-transition.opacity></div>
 
         <!-- Sidebar -->
         <aside :class="[sidebarOpen ? 'translate-x-0' : '-translate-x-full', initialized ? 'sidebar-ready' : 'sidebar-loading']"

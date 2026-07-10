@@ -390,10 +390,16 @@
             <a href="{{ route('profile.edit') }}" class="block rounded-2xl px-3 py-2 transition hover:bg-white/10" :class="sidebarCollapsed ? 'justify-center' : ''">
                 <div class="flex items-center gap-3">
                     <div class="w-9 h-9 rounded-full overflow-hidden ring-2 ring-white/20 flex items-center justify-center bg-white/15 flex-shrink-0">
-                        @if(auth()->user()->profile_photo)
-                            <img src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="Foto Profil" class="w-full h-full object-cover" />
+                        @if(Auth::user()->profile_photo)
+                            <img
+                                src="{{ Auth::user()->profile_photo }}"
+                                class="w-full h-full object-cover rounded-full"
+                                alt="Foto Profil">
                         @else
-                            <span class="font-semibold text-sm text-white">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
+                            <img
+                                src="{{ asset('images/default-profile.png') }}"
+                                class="w-full h-full object-cover rounded-full"
+                                alt="Default">
                         @endif
                     </div>
                     <div class="sidebar-user-info text-xs leading-tight min-w-0">

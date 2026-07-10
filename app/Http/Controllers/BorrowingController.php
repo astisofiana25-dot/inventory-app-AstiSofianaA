@@ -282,10 +282,18 @@ class BorrowingController extends Controller
                 $photos = [];
                 if (!empty($input['photos'])) {
                     foreach ($input['photos'] as $photo) {
-                        $path = $photo->store('returns', 'public');
-                        $photos[] = $path;
+
+                        $upload = cloudinary()
+                            ->uploadApi()
+                            ->upload(
+                                $photo->getRealPath(),
+                                [
+                                    'folder' => 'returns'
+                                ]
+                            );
+
+                        $photos[] = $upload['secure_url'];
                     }
-                }
 
                 $updateData = [
                     'kondisi_saat_kembali' => $input['kondisi'],

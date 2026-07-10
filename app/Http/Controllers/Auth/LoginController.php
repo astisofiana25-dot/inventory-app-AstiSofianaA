@@ -57,11 +57,11 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('logout.splash');
+        return redirect()->route('login', ['from_logout' => 1]);
     }
 
     public function logoutSplash()
     {
-        return view('auth.logout-splash');
+        return redirect()->route('login', ['from_logout' => 1]);
     }
 }

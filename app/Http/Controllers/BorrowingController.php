@@ -280,6 +280,7 @@ class BorrowingController extends Controller
                 if (!$input) continue;
 
                 $photos = [];
+
                 if (!empty($input['photos'])) {
                     foreach ($input['photos'] as $photo) {
 
@@ -294,6 +295,7 @@ class BorrowingController extends Controller
 
                         $photos[] = $upload['secure_url'];
                     }
+                }
 
                 $updateData = [
                     'kondisi_saat_kembali' => $input['kondisi'],

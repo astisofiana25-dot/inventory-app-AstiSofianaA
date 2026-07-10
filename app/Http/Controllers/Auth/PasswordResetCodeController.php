@@ -7,7 +7,7 @@ use App\Mail\ResetPasswordCodeMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class PasswordResetCodeController extends Controller
@@ -32,11 +32,33 @@ class PasswordResetCodeController extends Controller
 
         cache()->put('password_reset_code_'.$request->email, $code, now()->addMinutes(10));
 
-       try {
-        Mail::to($request->email)->send(new ResetPasswordCodeMail($code));
-    } catch (\Throwable $e) {
-        dd($e->getMessage());
-}
+        try {
+            // Menggunakan HTTP Client untuk bypass pemblokiran SMTP oleh Railway
+            $response = Http::withHeaders([
+                'api-key' => env('BREVO_API_KEY'),
+                'accept' => 'application/json',
+                'content-type' => 'application/json',
+            ])->post('https://api.brevo.com/v3/smtp/email', [
+                'sender' => [
+                    'name' => env('MAIL_FROM_NAME', 'Inventory App'),
+                    'email' => env('MAIL_FROM_ADDRESS', 'admintelkomreg3@gmail.com')
+                ],
+                'to' => [
+                    [
+                        'email' => $request->email,
+                    ]
+                ],
+                'subject' => 'Kode Konfirmasi Reset Password',
+                'htmlContent' => (new ResetPasswordCodeMail($code))->render()
+            ]);
+
+            if ($response->failed()) {
+                return back()->withErrors(['email' => 'Gagal mengirim email via API Brevo: ' . $response->body()]);
+            }
+
+        } catch (\Throwable $e) {
+            return back()->withErrors(['email' => 'Terjadi kesalahan sistem: ' . $e->getMessage()]);
+        }
 
         return redirect()->route('password.code.verify.show')->with('email', $request->email);
     }

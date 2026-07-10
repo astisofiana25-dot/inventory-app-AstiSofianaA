@@ -21,8 +21,11 @@
             @endif
         </div>
         <div class="flex flex-col lg:flex-row gap-6">
-            <img src="{{ $product->image ? asset('storage/'.$product->image) : 'https://placehold.co/260x260/fee2e2/dc2626?text='.substr($product->nama_barang,0,1) }}"
-                 class="w-full lg:w-56 h-56 rounded-xl object-cover border border-gray-100">
+           <img
+            src="{{ $product->image ?: 'https://placehold.co/260x260/fee2e2/dc2626?text='.substr($product->nama_barang,0,1) }}"
+            class="w-full lg:w-56 h-56 rounded-xl object-cover border border-gray-100"
+            alt="{{ $product->nama_barang }}"
+        >
             <div class="flex-1">
                 <dl class="grid grid-cols-2 gap-y-3 text-sm">
                     <dt class="text-gray-400">Kategori</dt><dd class="font-medium text-gray-700">{{ $product->category->name }}</dd>

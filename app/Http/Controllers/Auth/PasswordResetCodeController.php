@@ -32,7 +32,11 @@ class PasswordResetCodeController extends Controller
 
         cache()->put('password_reset_code_'.$request->email, $code, now()->addMinutes(10));
 
+       try {
         Mail::to($request->email)->send(new ResetPasswordCodeMail($code));
+    } catch (\Throwable $e) {
+        dd($e->getMessage());
+}
 
         return redirect()->route('password.code.verify.show')->with('email', $request->email);
     }

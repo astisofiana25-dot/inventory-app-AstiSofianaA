@@ -58,7 +58,7 @@
             @forelse ($products as $product)
                 <tr class="hover:bg-gray-50/70">
                     <td class="px-5 py-3 flex items-center gap-3">
-                        <img src="{{ $product->image ? asset('storage/'.$product->image) : 'https://placehold.co/80x80/fee2e2/dc2626?text='.substr($product->nama_barang,0,1) }}"
+                        <img src="{{ $product->image ?: 'https://placehold.co/80x80/fee2e2/dc2626?text='.substr($product->nama_barang,0,1) }}" class="w-10 h-10 rounded-lg object-cover border border-gray-100" alt="{{ $product->nama_barang }}">
                              class="w-10 h-10 rounded-lg object-cover border border-gray-100" alt="{{ $product->nama_barang }}">
                         <span class="font-medium text-gray-800">{{ $product->nama_barang }}</span>
                     </td>

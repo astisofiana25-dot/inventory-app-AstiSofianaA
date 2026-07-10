@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -28,14 +27,16 @@ class ProfileController extends Controller
             if ($user->profile_photo) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($user->profile_photo);
             }
-            $upload = Cloudinary::upload(
+            $upload = cloudinary()
+            ->uploadApi()
+            ->upload(
                 $request->file('profile_photo')->getRealPath(),
                 [
                     'folder' => 'profiles'
                 ]
-            );
+    );
 
-            $validated['profile_photo'] = $upload->getSecurePath();
+$validated['profile_photo'] = $upload['secure_url'];
         }
 
         $user->update($validated);

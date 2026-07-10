@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -53,15 +53,17 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $upload = Cloudinary::upload(
+        $upload = cloudinary()
+            ->uploadApi()
+            ->upload(
                 $request->file('image')->getRealPath(),
                 [
-                    'folder' => 'products'
+                    'folder' => 'products',
                 ]
             );
 
-            $validated['image'] = $upload->getSecurePath();
-        }
+        $validated['image'] = $upload['secure_url'];
+    }
 
         $validated['status'] = $request->user()?->hasRole('staff') ? 'pending' : 'approved';
         $validated['created_by'] = $request->user()?->id;
@@ -108,15 +110,17 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $upload = Cloudinary::upload(
+        $upload = cloudinary()
+            ->uploadApi()
+            ->upload(
                 $request->file('image')->getRealPath(),
                 [
-                    'folder' => 'products'
+                    'folder' => 'products',
                 ]
             );
 
-            $validated['image'] = $upload->getSecurePath();
-        }
+        $validated['image'] = $upload['secure_url'];
+    }
         $product->update($validated);
 
         return redirect()->route('products.index')->with('success', 'Barang berhasil diperbarui.');

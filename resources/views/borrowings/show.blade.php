@@ -57,12 +57,16 @@
                 </div>
 
                 @if(!empty($detail->photos) && is_array($detail->photos))
-                    <div class="grid grid-cols-2 gap-3 mb-3">
-                        @foreach($detail->photos as $photo)
-                            <img src="{{ asset('storage/'.$photo) }}" alt="Foto pengembalian {{ $detail->product->nama_barang }}" class="w-full h-40 object-cover rounded-lg border border-gray-200" />
-                        @endforeach
-                    </div>
-                @endif
+                <div class="grid grid-cols-2 gap-3 mb-3">
+                    @foreach($detail->photos as $photo)
+                        <img
+                            src="{{ $photo }}"
+                            alt="Foto pengembalian {{ $detail->product->nama_barang }}"
+                            class="w-full h-40 object-cover rounded-lg border border-gray-200"
+                        />
+                    @endforeach
+                </div>
+            @endif
 
                 @if(empty($detail->photos))
                     <div class="text-xs text-gray-400">Belum ada foto pengembalian.</div>

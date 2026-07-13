@@ -20,11 +20,11 @@
 
         @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager'))
             <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
-                <a href="{{ route('reports.categories.export.excel', request()->only(['q','category_id'])) }}" class="w-full sm:w-auto text-sm bg-green-100 hover:bg-green-200 text-green-900 px-3 py-2 rounded-xl font-medium">XLSX</a>
-                <a href="{{ route('reports.categories.export.pdf', request()->only(['q','category_id'])) }}" class="w-full sm:w-auto text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-2 rounded-xl font-medium">PDF</a>
+                <a href="{{ route('reports.categories.export.excel', request()->only(['q','category_id'])) }}" class="inline-flex items-center justify-center text-sm bg-green-100 hover:bg-green-200 text-green-900 px-3 py-2 rounded-xl font-medium">XLSX</a>
+                <a href="{{ route('reports.categories.export.pdf', request()->only(['q','category_id'])) }}" class="inline-flex items-center justify-center text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-2 rounded-xl font-medium">PDF</a>
                 @if(auth()->user()->hasRole('admin'))
                 <button type="button" @click="isOpen = true; editMode = false; formId = null; formName = ''"
-                        class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-700 transition">
+                        class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-700 transition whitespace-nowrap">
                     + Tambah Kategori
                 </button>
                 @endif

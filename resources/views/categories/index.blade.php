@@ -15,7 +15,7 @@
                 @endforeach
             </select>
 
-            <button type="submit" class="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 rounded-xl text-sm font-medium">Cari</button>
+            <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 rounded-xl text-sm font-medium h-11">Cari</button>
         </form>
 
         @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager'))

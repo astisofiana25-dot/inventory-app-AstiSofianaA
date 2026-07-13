@@ -4,27 +4,27 @@
 
 <div x-data="{ isOpen: false, editMode: false, formId: null, formName: '' }" class="space-y-6">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <form action="{{ route('categories.index') }}" method="GET" class="flex flex-1 gap-2 max-w-xl">
+        <form action="{{ route('categories.index') }}" method="GET" class="flex flex-col sm:flex-row flex-1 gap-2 max-w-xl w-full">
             <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari kategori..."
-                   class="flex-1 border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm rounded-xl px-4 py-2" />
+                   class="w-full sm:flex-1 border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm rounded-xl px-4 py-2" />
 
-            <select name="category_id" class="border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm rounded-xl px-3 py-2">
+            <select name="category_id" class="w-full sm:w-auto border-gray-300 focus:border-brand-500 focus:ring-brand-500 shadow-sm text-sm rounded-xl px-3 py-2">
                 <option value="">Semua Kategori</option>
                 @foreach($categoryOptions as $option)
                     <option value="{{ $option->id }}" @selected(request('category_id') == $option->id)>{{ sprintf('KTG-%03d', $option->id) }}</option>
                 @endforeach
             </select>
 
-            <button type="submit" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 rounded-xl text-sm font-medium">Cari</button>
+            <button type="submit" class="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 rounded-xl text-sm font-medium">Cari</button>
         </form>
 
         @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager'))
-            <div class="flex items-center gap-2">
-                <a href="{{ route('reports.categories.export.excel', request()->only(['q','category_id'])) }}" class="text-sm bg-green-100 hover:bg-green-200 text-green-900 px-3 py-2 rounded-xl font-medium">XLSX</a>
-                <a href="{{ route('reports.categories.export.pdf', request()->only(['q','category_id'])) }}" class="text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-2 rounded-xl font-medium">PDF</a>
+            <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                <a href="{{ route('reports.categories.export.excel', request()->only(['q','category_id'])) }}" class="w-full sm:w-auto text-sm bg-green-100 hover:bg-green-200 text-green-900 px-3 py-2 rounded-xl font-medium">XLSX</a>
+                <a href="{{ route('reports.categories.export.pdf', request()->only(['q','category_id'])) }}" class="w-full sm:w-auto text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-2 rounded-xl font-medium">PDF</a>
                 @if(auth()->user()->hasRole('admin'))
                 <button type="button" @click="isOpen = true; editMode = false; formId = null; formName = ''"
-                        class="inline-flex items-center justify-center rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-700 transition">
+                        class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-700 transition">
                     + Tambah Kategori
                 </button>
                 @endif
